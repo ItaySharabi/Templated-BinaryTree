@@ -9,6 +9,9 @@
 using namespace std;
 using namespace ariel;
 
+
+
+
 /** 
  * @param vector<V>: A vector ONLY of size 5, with any elements.
  *  A simple method to fill a tree with elements from a vector v
