@@ -158,18 +158,6 @@ namespace ariel {
                 return *this;
             }
             
-            // vector<Node*> traverse_pre_order(Node *start, T target, T new_val){
-                
-            //     if (start == nullptr) return;
-
-            //     if(start->left != nullptr) {
-            //         traverse_pre_order(start->left);
-            //     }
-            //     cout << "curr: " << start->val << endl;
-            //     if(start->right != nullptr) {
-            //         traverse_pre_order(start->right);
-            //     }
-            // }
             iterator begin_preorder(){return iterator{Traverse::PreOrder, root};}
             iterator end_preorder(){return iterator{Traverse::PreOrder, nullptr};} 
 

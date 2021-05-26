@@ -61,20 +61,20 @@ void test_iterators(BinaryTree<V> tree) {
     auto in_iter1 = tree.begin_inorder();   // left -> root -> right
     auto in_iter2 = tree.begin();           // like in-order
 
+        cout << "start 1" << endl;
     V root; 
     for(;post_iter != tree.end_postorder(); ++post_iter) {
         root = *post_iter;
     } // after for loop, 'root' will get the value (V) of the root of 'tree'
+        cout << "finish 1" << endl;
 
     // pre_iter should point to root first
     CHECK(*pre_iter == root);   // Check if pre and post iterators return the root as first/last element
     /* ^ IF Type V has operator == ^ */
 
-
     // in-order and regular begin() should behave the same in terms of traversal
-    for (; in_iter1 != tree.end() && in_iter2 != tree.end_inorder();) {
-        cout << "*in_iter1 = " << *in_iter1 << ", " << " *in_iter2 = " << *in_iter2 << endl;
-        CHECK(*(++in_iter1) == *(++in_iter2));
+    for (; in_iter1 != tree.end_inorder() && in_iter2 != tree.end();++in_iter1, ++in_iter2) {
+        CHECK(*(in_iter1) == *(in_iter2));
     }
 }   
 
@@ -123,8 +123,10 @@ void test_add_methods(vector<T> elements) {
 
 TEST_CASE("Test 1: Traversal Orders (Pre-set 5-Node trees)") {
     // Pre-determined trees of size 5
+    cout << "before" << endl;
     BinaryTree</*int*/> tree_of_ints; // tree 1
     tree_of_ints = fill_tree<int>({1,2,3,4,5});
+    cout << "created" << endl;
     /*              1       tree form
                    / \
                   2   5
@@ -166,6 +168,7 @@ TEST_CASE("Test 1: Traversal Orders (Pre-set 5-Node trees)") {
         vector<int> pre_vector =  {1,2,3,4,5};
         // Post-Order print: 3-4-2-5-1
         vector<int> post_vector = {3,4,2,5,1};
+        cout << "starting 1" << endl;
         
 
         auto pre_iter = tree_of_ints.begin_preorder();
@@ -174,20 +177,26 @@ TEST_CASE("Test 1: Traversal Orders (Pre-set 5-Node trees)") {
         auto in_iter2 = tree_of_ints.begin(); // should work like in-order
         
 
+        cout << "starting 1" << endl;
         // cout << "pre_vector: " << endl;
         for (auto i : pre_vector) {
-            CHECK(i == *(pre_iter++));
+            CHECK(i == *(pre_iter));
+            ++pre_iter;
         }
+        cout << "finished 1" << endl;
 
         // cout << "post_vector: " << endl;
         for (auto i : post_vector) {
-            CHECK(i == *(post_iter++));
+            CHECK(i == *(post_iter));
+            ++post_iter;
         }
 
         // cout << "in_vector: " << endl;
         for (auto i : in_vector) {
-            CHECK(i == *(in_iter1++));
-            CHECK(i == *(in_iter2++));
+            CHECK(i == *(in_iter1));
+            CHECK(i == *(in_iter2));
+            ++in_iter1;
+            ++in_iter2;
         }
     }
     
