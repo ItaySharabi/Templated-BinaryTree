@@ -75,6 +75,14 @@ void test_iterators(BinaryTree<V> tree) {
     }
 }   
 
+/**
+ * @param vector<T>: a vector with N > 3 elements.
+ * 
+ * This method creates trees of size 3, and generates a random number.
+ * A random value is taken from the vector
+ * and if the value is one of the 3 elements of the the tree - regenerate a new 3-Node tree
+ * else - should throw when trying to add to the non-exsistant value. 
+*/
 template<typename T = int>
 void test_add_methods(vector<T> elements) {
 
@@ -87,16 +95,14 @@ void test_add_methods(vector<T> elements) {
     unsigned int random;
 
     for(unsigned int i = 0; i < elements.size()-2; i++) {
-        new_root = elements.at(i); //  3
-        new_left = elements.at(i+1);// 3
-        new_right = elements.at(i+2);//6
+        new_root = elements.at(i); 
+        new_left = elements.at(i+1);
+        new_right = elements.at(i+2);
 
         random = ((unsigned long)rand() % (elements.size()-2)); // random index
-        // cout << "random = " << random << endl;
-        if (random >= elements.size()) continue;    // `random` recieves large values at last iteration
+        if (random >= elements.size()) continue;                // `random` recieves large values at last iteration
         
-        rand_val = elements.at(random);                       // random value 
-        // cout << "rand_val = " << rand_val << endl;
+        rand_val = elements.at(random);                          // random value 
         if(new_root != rand_val && new_left != rand_val && new_right != rand_val) {
             /* if found a value which does not belong to the tree */
             CHECK_THROWS(test_tree.add_left(rand_val, rand_val));
