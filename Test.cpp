@@ -1,31 +1,13 @@
 #include "doctest.h"
 #include "BinaryTree.hpp"
-#include <sstream>
 #include <vector>
 #include <string>
 #include <typeinfo>
-#include <algorithm>
-#include <iterator>
 #include <cstdlib>
-#include <set>
 #include <iostream>
 
 using namespace std;
 using namespace ariel;
-
-TEST_CASE("Test 0: Construction and Destruction (Trivial)") {
-    // CHECK_NOTHROW(BinaryTree<int> tree_of_ints;);
-    // CHECK_NOTHROW(BinaryTree<float> tree_of_floats;);
-    // CHECK_NOTHROW(BinaryTree<string> tree_of_strings;);
-    // CHECK_NOTHROW(BinaryTree<char *> tree_of_char_ptrs;);
-    // BinaryTree<int> tree_of_ints;
-    // BinaryTree<float> tree_of_floats;
-    // BinaryTree<string> tree_of_strings;
-    // CHECK_NOTHROW(tree_of_ints.add_root(3));
-    // CHECK_NOTHROW(tree_of_floats.add_root(83.22));
-    // CHECK_NOTHROW(tree_of_strings.add_root("Hello, world!"));
-}
-
 
 /** 
  * @param vector<V>: A vector ONLY of size 5, with any elements.
@@ -92,7 +74,6 @@ void test_iterators(BinaryTree<V> tree) {
         CHECK(*(++in_iter1) == *(++in_iter2));
     }
 }   
-
 
 template<typename T = int>
 void test_add_methods(vector<T> elements) {
@@ -206,10 +187,11 @@ TEST_CASE("Test 1: Traversal Orders (Pre-set 5-Node trees)") {
 TEST_CASE("Test 2: Add Methods (3-Node trees)") {
 
     srand(0);
-
+    //  Creating vectors of different types, with random values.
     vector<int> rand_ints(100);
     vector<double> rand_doubles(100);
     vector<string> rand_strings = {"Hello, ", "world! ", "This ", "is ", "a ", "binary ", "tree ", "test!"};
+
     for(unsigned int i = 0; i < rand_ints.size(); i++) {
         rand_ints.at(i) = rand()%10;
         rand_doubles.at(i) = (double)(rand_ints.at(i)/5.0) + 1;
