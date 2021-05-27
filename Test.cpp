@@ -89,16 +89,18 @@ void test_iterators(BinaryTree<V> tree) {
 template<typename T = int>
 void test_add_methods(vector<T> elements) {
 
-    BinaryTree<T> test_tree;
     
     T new_root, new_left, new_right;
     T rand_val;
-    test_tree.add_root(rand_val);   // init with default root
                                     
     unsigned int random;
 
     for(unsigned int i = 0; i < elements.size()-2; i++) {
+        BinaryTree<T> test_tree;
+
         new_root = elements.at(i); 
+        test_tree.add_root(new_root);   // init with default root
+
         new_left = elements.at(i+1);
         new_right = elements.at(i+2);
 
