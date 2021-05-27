@@ -81,23 +81,20 @@ namespace ariel {
                     bool operator!= (const iterator& other){return !q.empty();}
                     const T& operator* () const {return curr_node_ptr->val;}
                     const T* operator->() const {return &(curr_node_ptr->val);}
-                    Node* get_node_ptr()  const {return curr_node_ptr;}
+                    // Node* get_node_ptr()  const {return curr_node_ptr;}
                     // friend std::ostream& operator <<(std::ostream& os, const iterator& it) {return os << "*it = " << curr_node_ptr << std::endl;}
             };
 
             Node* root;
-            // map<T, Node*> nodes;
 
         public:
             BinaryTree():root(nullptr){}
             BinaryTree<T>& add_root(const T& v){
                 if(root == nullptr) {
                     root = new Node(v);
-                    // nodes[v] = root;
                 }
                 else {
                     root->val = v;
-                    // nodes.erase()
                 }
                 return *this;
             }
